@@ -1,0 +1,14 @@
+dist: trusty
+group: edge
+language: java
+sudo: required
+jdk: openjdk8
+cache:
+ directories:
+  - $HOME/.m2
+before_script:
+ - cd restaurant-manager
+script:
+ - mvn clean install
+after_success:
+ - mvn jacoco:report coveralls:report
