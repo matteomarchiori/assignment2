@@ -23,6 +23,7 @@
         <version>3.0.0</version>
         <configuration>
           <failsOnError>true</failsOnError>
+          <configLocation>checkstyle.xml</configLocation>
           <consoleOutput>true</consoleOutput>
         </configuration>
         <executions>
