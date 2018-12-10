@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RestaurantBillImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">restaurant-manager</a> &gt; <a href="index.source.html" class="el_package">it.unipd.tos.business</a> &gt; <span class="el_source">RestaurantBillImpl.java</span></div><h1>RestaurantBillImpl.java</h1><pre class="source lang-java linenums">////////////////////////////////////////////////////////////////////
+// [Matteo] [Marchiori] [1143333]
+////////////////////////////////////////////////////////////////////
+package it.unipd.tos.business;
+
+import it.unipd.tos.business.exception.RestaurantBillException;
+import it.unipd.tos.model.MenuItem;
+import java.util.List;
+
+/**
+ * Implementation of restaurant manager
+ * @author matteo
+ */
+<span class="fc" id="L14">public class RestaurantBillImpl implements RestaurantBill{</span>
+
+    public double getOrderPrice(List&lt;MenuItem&gt; itemsOrdered) throws RestaurantBillException {
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if(itemsOrdered.size()&gt;20)throw new RestaurantBillException(&quot;Troppi elementi aggiunti al conto.&quot;);</span>
+<span class="fc" id="L18">        double total = 0;</span>
+<span class="fc" id="L19">        int countPizza = 0;</span>
+<span class="fc" id="L20">        double freePizzaPrice = Double.MAX_VALUE;</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        for(MenuItem mi : itemsOrdered){</span>
+<span class="fc" id="L22">            total += mi.getPrice();</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            if(mi.getType().equals(MenuItem.itemType.Pizza)){</span>
+<span class="fc" id="L24">                countPizza++;</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">                if(mi.getPrice()&lt;freePizzaPrice)freePizzaPrice = mi.getPrice();</span>
+            }
+<span class="fc" id="L27">        }</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if(countPizza&gt;10) total -= freePizzaPrice;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if(total&gt;100)total*=0.95;</span>
+<span class="fc" id="L30">        return total;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
